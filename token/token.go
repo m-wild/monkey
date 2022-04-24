@@ -16,6 +16,7 @@ const (
 	ASTERISK = "*"
 	SLASH    = "/"
 
+	// Comparisons
 	LT     = "<"
 	GT     = ">"
 	EQ     = "=="
@@ -25,6 +26,7 @@ const (
 	COMMA     = ","
 	SEMICOLON = ";"
 
+	// Parens
 	LPAREN = "("
 	RPAREN = ")"
 	LBRACE = "{"
