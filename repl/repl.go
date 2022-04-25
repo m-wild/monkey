@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/tehmantra/monkey/evaluator"
 	"github.com/tehmantra/monkey/lexer"
 	"github.com/tehmantra/monkey/parser"
 )
@@ -31,7 +32,11 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		fmt.Fprint(out, program.String())
+		evaluated := evaluator.Eval(program)
+		if evaluated != nil {
+			fmt.Fprint(out, evaluated.Inspect())
+		}
+
 		fmt.Fprintln(out)
 	}
 }
