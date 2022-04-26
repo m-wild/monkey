@@ -6,6 +6,7 @@ type ObjectType string
 
 const (
 	NULL_OBJ         = "NULL"
+	ERROR_OBJ        = "ERROR"
 	INTEGER_OBJ      = "INTEGER"
 	BOOLEAN_OBJ      = "BOOLEAN"
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
@@ -15,6 +16,13 @@ type Object interface {
 	Type() ObjectType
 	Inspect() string
 }
+
+type Error struct {
+	Message string
+}
+
+func (e *Error) Type() ObjectType { return ERROR_OBJ }
+func (e *Error) Inspect() string  { return fmt.Sprintf("ERROR: %s", e.Message) }
 
 type Integer struct {
 	Value int64
