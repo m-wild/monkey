@@ -7,6 +7,7 @@ import (
 
 	"github.com/tehmantra/monkey/evaluator"
 	"github.com/tehmantra/monkey/lexer"
+	"github.com/tehmantra/monkey/object"
 	"github.com/tehmantra/monkey/parser"
 )
 
@@ -14,6 +15,7 @@ const PROMPT = ">> "
 
 func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
+	env := object.NewEnvironment()
 
 	for {
 		fmt.Fprint(out, PROMPT)
@@ -32,7 +34,7 @@ func Start(in io.Reader, out io.Writer) {
 			continue
 		}
 
-		evaluated := evaluator.Eval(program)
+		evaluated := evaluator.Eval(program, env)
 		if evaluated != nil {
 			fmt.Fprint(out, evaluated.Inspect())
 		}
